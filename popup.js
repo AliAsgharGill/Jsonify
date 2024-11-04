@@ -5,6 +5,27 @@ import countFrequency from "./utils/frequency.js";
 import searchJSON from "./utils/search.js";
 import replaceKey from "./utils/replace.js";
 import { copyToClipboard, pasteFromClipboard } from "./utils/importExport.js";
+import { getUniqueValues } from "./utils/uniqueValues.js"; // Import the function
+
+// Existing code...
+
+document.getElementById("uniqueCount").addEventListener("click", () => {
+  const input = document.getElementById("jsonInput").value;
+  const key = document.getElementById("uniqueKey").value; // Get the key from input
+  try {
+    const jsonObj = JSON.parse(input);
+    const uniqueValues = getUniqueValues(jsonObj, key);
+
+    // Format output as required
+    const output = Object.entries(uniqueValues)
+      .map(([value, count]) => `${value}: ${count}`)
+      .join("\n");
+
+    document.getElementById("output").textContent = output; // Display formatted output
+  } catch (e) {
+    showAlert("Invalid JSON");
+  }
+});
 
 // Beautify JSON
 document.getElementById("beautify").addEventListener("click", () => {
