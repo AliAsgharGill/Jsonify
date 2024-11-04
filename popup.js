@@ -10,7 +10,11 @@ import showAlert from "./utils/alert.js";
 
 document.getElementById("uniqueCount").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
-  const key = document.getElementById("uniqueKey").value; // Get the key from input
+  const key = document.getElementById("uniqueKey").value;
+  if (!key) {
+    showAlert("Please Enter a Key to get Unique Values", "warning");
+    return;
+  }
   try {
     const jsonObj = JSON.parse(input);
     const uniqueValues = getUniqueValues(jsonObj, key);
@@ -22,16 +26,20 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
 
     document.getElementById("output").textContent = output; // Display formatted output
   } catch (e) {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   }
 });
 
 // Beautify JSON
 document.getElementById("beautify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value; // Get JSON from input
+  if (!input) {
+    showAlert("Please Provide JSON Data", "warning");
+    return;
+  }
   const output = beautifyJSON(input); // Beautify the JSON
   if (output === "Invalid JSON") {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   } else {
     document.getElementById("output").textContent = output; // Display the beautified JSON
   }
@@ -40,9 +48,13 @@ document.getElementById("beautify").addEventListener("click", () => {
 // Validate JSON
 document.getElementById("validate").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data for validation", "warning");
+    return;
+  }
   const result = validateJSON(input);
   if (result === "Invalid JSON: Unexpected end of JSON input") {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   } else {
     document.getElementById("output").textContent = result.message;
   }
@@ -51,9 +63,13 @@ document.getElementById("validate").addEventListener("click", () => {
 // Minify JSON
 document.getElementById("minify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data for minification", "warning");
+    return;
+  }
   const output = minifyJSON(input);
   if (output === "Invalid JSON") {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   } else {
     document.getElementById("output").textContent = output;
   }
@@ -62,6 +78,10 @@ document.getElementById("minify").addEventListener("click", () => {
 // Count Frequency of Values
 document.getElementById("frequency").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data", "warning");
+    return;
+  }
   try {
     const jsonObj = JSON.parse(input);
     const frequency = countFrequency(jsonObj);
@@ -71,13 +91,17 @@ document.getElementById("frequency").addEventListener("click", () => {
       2
     );
   } catch (e) {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   }
 });
 
 // Search in JSON
 document.getElementById("search").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide keyword to search", "warning");
+    return;
+  }
   const keyword = document.getElementById("searchKeyword").value; // Assuming you have an input for the search keyword
   try {
     const jsonObj = JSON.parse(input);
@@ -95,8 +119,20 @@ document.getElementById("search").addEventListener("click", () => {
 // Replace Key in JSON
 document.getElementById("replace").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data", "warning");
+    return;
+  }
   const oldKey = document.getElementById("oldKey").value; // Input for old key
+  if (!oldKey) {
+    showAlert("Please Enter Old Key to Replace", "warning");
+    return;
+  }
   const newKey = document.getElementById("newKey").value; // Input for new key
+  if (!newKey) {
+    showAlert("Please Enter New Key to Replace", "warning");
+    return;
+  }
   try {
     const jsonObj = JSON.parse(input);
     const newJsonObj = replaceKey(jsonObj, oldKey, newKey);
@@ -114,7 +150,11 @@ document.getElementById("replace").addEventListener("click", () => {
 document.getElementById("copy").addEventListener("click", () => {
   const output = document.getElementById("output").textContent;
   const message = copyToClipboard(output);
-  showAlert(message);
+  if (message === "Nothing to copy!") {
+    showAlert(message, "warning");
+    return;
+  }
+  showAlert(message, "success");
 });
 
 document.getElementById("closeAlert").addEventListener("click", () => {
@@ -132,6 +172,10 @@ window.addEventListener("click", (event) => {
 // Count Unique Values
 document.getElementById("uniqueCount").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data", "warning");
+    return;
+  }
   const key = document.getElementById("uniqueKey").value; // Get the key from input
   try {
     const jsonObj = JSON.parse(input);
@@ -142,19 +186,21 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
 
     document.getElementById("output").textContent = output; // Display formatted output
   } catch (e) {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   }
 });
 
 // Validate JSON
 document.getElementById("validate").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
+  if (!input) {
+    showAlert("Please Provide JSON Data for validation", "warning");
+    return;
+  }
   const result = validateJSON(input);
   document.getElementById("output").textContent = result.message;
   showAlert(result.message); // Show alert with validation message
   if (!result.isValid) {
-    showAlert("Invalid JSON");
+    showAlert("Please Provide JSON Data", "warning");
   }
 });
-
-// Repeat this for all instances where "Invalid JSON" is shown in the code

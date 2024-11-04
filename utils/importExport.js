@@ -1,5 +1,8 @@
 // Copies JSON data to the clipboard
 function copyToClipboard(json) {
+  if (!json) {
+    return "Nothing to copy!";
+  }
   navigator.clipboard.writeText(JSON.stringify(json, null, 2));
   return "Copied to clipboard!";
 }

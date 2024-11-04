@@ -1,7 +1,13 @@
-function showAlert(message) {
+function showAlert(message, type = "") {
   const alertMessage = document.getElementById("alertMessage");
   const customAlert = document.getElementById("customAlert");
-  alertMessage.textContent = message; // Set the message
+
+  // Set the alert message
+  alertMessage.textContent = message;
+
+  // Add class based on alert type (success, error, warning)
+  customAlert.className = `custom-alert ${type}`;
+
   customAlert.style.display = "block"; // Show the alert
   customAlert.classList.remove("hide"); // Ensure it's fully visible at the start
 
