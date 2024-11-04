@@ -41,11 +41,11 @@ textarea {
   height: 150px;
   margin-bottom: 15px;
   padding: 10px;
-  border: 1px solid #ddd;
   border-radius: 5px;
   font-size: 1rem;
   resize: vertical;
-  background-color: #f9f9f9;
+  border: 2px solid linear-gradient(45deg, #82dbf7 0%, #b6f09c 100%);
+  background-color: var(--secondary-color);
 }
 
 /* Button styling with icons */
@@ -60,7 +60,6 @@ textarea {
   height: 150px;
   margin-bottom: 15px;
   padding: 10px;
-  border: none; /* Remove default border */
   border-radius: 8px; /* Slightly larger radius for smoother corners */
   font-size: 1rem;
   resize: vertical;
@@ -76,7 +75,7 @@ textarea {
 /* Focus state */
 #jsonInput:focus {
   box-shadow:
-    0 6px 15px rgba(0, 0, 0, 0.25),
+    0 6px 15px rgba(1, 1, 1, 0.25),
     0 3px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-3px); /* Increased lift effect */
   outline: none; /* Remove default outline */
@@ -85,15 +84,15 @@ textarea {
 /* Hover state */
 #jsonInput:hover {
   box-shadow:
-    0 5px 12px rgba(0, 0, 0, 0.15),
-    0 3px 7px rgba(0, 0, 0, 0.2);
+    0 5px 12px var(--primary-color),
+    0 3px 7px var(--primary-color);
 }
 
 /* Adding a subtle transition effect on hover */
 #jsonInput:hover:focus {
   box-shadow:
-    0 6px 18px rgba(0, 0, 0, 0.3),
-    0 4px 10px rgba(0, 0, 0, 0.25);
+    0 6px 18px var(--primary-color),
+    0 4px 10px var(--primary-color);
 }
 
 button {
@@ -130,10 +129,15 @@ button:hover {
   margin-bottom: 15px;
 }
 
+.label {
+  font-size: 1rem;
+  color: #fff;
+}
 input[type="text"] {
   padding: 10px;
   font-size: 1rem;
-  border: 1px solid #ddd;
+  /* border: 1px solid #ff0000; */
+  border: 2px solid linear-gradient(45deg, #82dbf7 0%, #b6f09c 100%);
   border-radius: 5px;
   width: 100%;
   max-width: 300px;
