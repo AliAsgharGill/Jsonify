@@ -7,7 +7,6 @@ import { copyToClipboard, pasteFromClipboard } from "./utils/importExport.js";
 import { getUniqueValues } from "./utils/uniqueValues.js"; // Import the function
 import beautifyJSON from "./utils/beautify.js"; // Import the function
 import showAlert from "./utils/alert.js";
-// Existing code...
 
 document.getElementById("uniqueCount").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;

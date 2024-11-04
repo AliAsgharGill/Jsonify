@@ -1,65 +1,142 @@
+/* General styling */
 body {
   font-family: Arial, sans-serif;
-  padding: 10px;
-  width: 300px;
+  padding: 20px;
+  background: linear-gradient(to right, #4a90e2, #50b5d3);
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 500px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #fff;
+}
+
+.input-section {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 textarea {
   width: 100%;
-  height: 100px;
-  margin-bottom: 10px;
+  height: 150px;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  resize: vertical;
+  background-color: #f9f9f9;
+}
+
+/* Button styling with icons */
+.button-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
 }
 
 button {
-  margin-right: 5px;
-  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease,
+    box-shadow 0.3s ease;
+  color: white;
+  background-color: #4a90e2;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: #357ab8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Search, Replace, and Unique Key sections */
+.search-section,
+.replace-section,
+.unique-key-section {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 300px;
 }
 
 #output {
+  width: 100%;
   margin-top: 10px;
-  white-space: pre-wrap;
-  background-color: #f0f0f0;
-  padding: 10px;
-}
-/* CSS for custom alert */
-.custom-alert {
-  display: none; /* Initially hidden */
-  opacity: 1; /* Fully visible */
-  transition: opacity 0.5s ease; /* 0.5s fade-out effect */
-  position: fixed;
-  top: 0px;
-  right: 25%;
-  padding: 5px 10px;
-  width: 50%;
-  max-width: 400px;
+  padding: 15px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
   border-radius: 5px;
-  z-index: 1000;
+  color: #333;
+  font-family: monospace;
+  white-space: pre-wrap;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
-.custom-alert.hide {
-  opacity: 0; /* Fully transparent */
+/* Custom Alert styling */
+.custom-alert {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #ff6b6b;
+  color: white;
+  padding: 15px 20px;
+  border-radius: 5px;
+  z-index: 1000;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease forwards;
+}
+
+.custom-alert.show {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .custom-alert-content {
-  background-color: #ffcccc;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 5px 10px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-  max-width: 400px; /* Maximum width */
-  border-radius: 5px; /* Rounded corners */
+  font-size: 1rem;
 }
 
-.close-btn {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close-btn:hover,
-.close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
+/* Responsive styling */
+@media (max-width: 600px) {
+  textarea,
+  input[type="text"],
+  button {
+    width: 100%;
+    font-size: 0.9rem;
+  }
 }
