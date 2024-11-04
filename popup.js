@@ -6,7 +6,7 @@ import replaceKey from "./utils/replace.js";
 import { copyToClipboard, pasteFromClipboard } from "./utils/importExport.js";
 import { getUniqueValues } from "./utils/uniqueValues.js"; // Import the function
 import beautifyJSON from "./utils/beautify.js"; // Import the function
-
+import showAlert from "./utils/alert.js";
 // Existing code...
 
 document.getElementById("uniqueCount").addEventListener("click", () => {
@@ -103,6 +103,47 @@ document.getElementById("replace").addEventListener("click", () => {
 document.getElementById("copy").addEventListener("click", () => {
   const output = document.getElementById("output").textContent;
   const message = copyToClipboard(output);
-  alert(message);
+  showAlert(message);
 });
 
+document.getElementById("closeAlert").addEventListener("click", () => {
+  document.getElementById("customAlert").style.display = "none";
+});
+
+// Close the alert when clicking outside of the alert box
+window.addEventListener("click", (event) => {
+  const customAlert = document.getElementById("customAlert");
+  if (event.target === customAlert) {
+    customAlert.style.display = "none";
+  }
+});
+
+// Count Unique Values
+document.getElementById("uniqueCount").addEventListener("click", () => {
+  const input = document.getElementById("jsonInput").value;
+  const key = document.getElementById("uniqueKey").value; // Get the key from input
+  try {
+    const jsonObj = JSON.parse(input);
+    const uniqueValues = getUniqueValues(jsonObj, key);
+    const output = Object.entries(uniqueValues)
+      .map(([value, count]) => `${value}: ${count}`)
+      .join("\n");
+
+    document.getElementById("output").textContent = output; // Display formatted output
+  } catch (e) {
+    showAlert("Invalid JSON");
+  }
+});
+
+// Validate JSON
+document.getElementById("validate").addEventListener("click", () => {
+  const input = document.getElementById("jsonInput").value;
+  const result = validateJSON(input);
+  document.getElementById("output").textContent = result.message;
+  showAlert(result.message); // Show alert with validation message
+  if (!result.isValid) {
+    showAlert("Invalid JSON");
+  }
+});
+
+// Repeat this for all instances where "Invalid JSON" is shown in the code
