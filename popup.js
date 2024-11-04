@@ -31,21 +31,33 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
 document.getElementById("beautify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value; // Get JSON from input
   const output = beautifyJSON(input); // Beautify the JSON
-  document.getElementById("output").textContent = output; // Display the beautified JSON
+  if (output === "Invalid JSON") {
+    showAlert("Invalid JSON");
+  } else {
+    document.getElementById("output").textContent = output; // Display the beautified JSON
+  }
 });
 
 // Validate JSON
 document.getElementById("validate").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   const result = validateJSON(input);
-  document.getElementById("output").textContent = result.message;
+  if (result === "Invalid JSON: Unexpected end of JSON input") {
+    showAlert("Invalid JSON");
+  } else {
+    document.getElementById("output").textContent = result.message;
+  }
 });
 
 // Minify JSON
 document.getElementById("minify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   const output = minifyJSON(input);
-  document.getElementById("output").textContent = output;
+  if (output === "Invalid JSON") {
+    showAlert("Invalid JSON");
+  } else {
+    document.getElementById("output").textContent = output;
+  }
 });
 
 // Count Frequency of Values
@@ -60,7 +72,7 @@ document.getElementById("frequency").addEventListener("click", () => {
       2
     );
   } catch (e) {
-    document.getElementById("output").textContent = "Invalid JSON";
+    showAlert("Invalid JSON");
   }
 });
 

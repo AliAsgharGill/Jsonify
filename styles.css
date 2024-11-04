@@ -21,22 +21,29 @@ button {
   background-color: #f0f0f0;
   padding: 10px;
 }
+/* CSS for custom alert */
 .custom-alert {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1000; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(0, 0, 0, 0.5); /* Black w/ opacity */
+  display: none; /* Initially hidden */
+  opacity: 1; /* Fully visible */
+  transition: opacity 0.5s ease; /* 0.5s fade-out effect */
+  position: fixed;
+  top: 0px;
+  right: 25%;
+  padding: 5px 10px;
+  width: 50%;
+  max-width: 400px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.custom-alert.hide {
+  opacity: 0; /* Fully transparent */
 }
 
 .custom-alert-content {
-  background-color: #fefefe;
+  background-color: #ffcccc;
   margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  padding: 5px 10px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
   max-width: 400px; /* Maximum width */
