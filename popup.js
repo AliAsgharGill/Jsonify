@@ -1,4 +1,3 @@
-// import beautifyJSON from "./utils/beautify.js";
 import validateJSON from "./utils/validate.js";
 import minifyJSON from "./utils/minify.js";
 import countFrequency from "./utils/frequency.js";
@@ -6,6 +5,7 @@ import searchJSON from "./utils/search.js";
 import replaceKey from "./utils/replace.js";
 import { copyToClipboard, pasteFromClipboard } from "./utils/importExport.js";
 import { getUniqueValues } from "./utils/uniqueValues.js"; // Import the function
+import beautifyJSON from "./utils/beautify.js"; // Import the function
 
 // Existing code...
 
@@ -29,9 +29,9 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
 
 // Beautify JSON
 document.getElementById("beautify").addEventListener("click", () => {
-  const input = document.getElementById("jsonInput").value;
-  const output = beautifyJSON(input);
-  document.getElementById("output").textContent = output;
+  const input = document.getElementById("jsonInput").value; // Get JSON from input
+  const output = beautifyJSON(input); // Beautify the JSON
+  document.getElementById("output").textContent = output; // Display the beautified JSON
 });
 
 // Validate JSON
@@ -106,8 +106,3 @@ document.getElementById("copy").addEventListener("click", () => {
   alert(message);
 });
 
-// Paste JSON from Clipboard
-document.getElementById("paste").addEventListener("click", async () => {
-  const message = await pasteFromClipboard();
-  document.getElementById("jsonInput").value = JSON.stringify(message, null, 2);
-});
