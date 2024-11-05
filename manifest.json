@@ -7,9 +7,9 @@
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "icons/icon.png",
-      "48": "icons/icon.png",
-      "128": "icons/icon.png"
+      "16": "icons/jsonify1024.png",
+      "48": "icons/jsonify1024.png",
+      "128": "icons/jsonify1024.png"
     }
   },
   "background": {
