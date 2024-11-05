@@ -12,14 +12,19 @@
     />
   </head>
   <body>
-    <h2>Jsonify</h2>
+    <div class="upper-header">
+      <h2>Jsonify</h2>
+      <button id="sample-data">
+        <i class="fas fa-database"></i> Dummy Data
+      </button>
+    </div>
     <div class="input-section">
       <textarea id="jsonInput" placeholder="Enter JSON here..."></textarea>
     </div>
 
     <!-- Main function buttons in a single row with icons -->
     <div class="button-row">
-      <button id="beautify"><i class="fas fa-paint-brush"></i> Beautify</button>
+      <button id="beautify"><i class="fas fa-code"></i> Format</button>
       <button id="validate">
         <i class="fas fa-check-circle"></i> Validate
       </button>
@@ -29,7 +34,7 @@
       </button>
     </div>
 
-    <h3 class="label" >Search</h3>
+    <h3 class="label">Search</h3>
     <div class="search-section">
       <input type="text" id="searchKeyword" placeholder="Enter keyword" />
       <button id="search"><i class="fas fa-search"></i> Search</button>
@@ -53,10 +58,14 @@
       <input type="text" id="newKey" placeholder="New Key" />
       <button id="replace"><i class="fas fa-exchange-alt"></i> Replace</button>
     </div>
-
-    <button id="copy" class="copy-btn">
-      <i class="fas fa-copy"></i> Copy Output
-    </button>
+    <div class="output-buttons">
+      <button id="copy" class="copy-btn">
+        <i class="fas fa-copy"></i> Copy Output
+      </button>
+      <button id="clear-output" class="clear-btn">
+        <i class="fas fa-trash-alt"></i> Clear Output
+      </button>
+    </div>
 
     <div id="output"></div>
 

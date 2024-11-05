@@ -7,41 +7,44 @@ import { copyToClipboard, pasteFromClipboard } from "./utils/importExport.js";
 import { getUniqueValues } from "./utils/uniqueValues.js"; // Import the function
 import beautifyJSON from "./utils/beautify.js"; // Import the function
 import showAlert from "./utils/alert.js";
+import sampleData from "./assets/sampleDate.js";
 
-document.getElementById("uniqueCount").addEventListener("click", () => {
-  const input = document.getElementById("jsonInput").value;
-  const key = document.getElementById("uniqueKey").value;
-  if (!key) {
-    showAlert("Please Enter a Key to get Unique Values", "warning");
-    return;
-  }
-  try {
-    const jsonObj = JSON.parse(input);
-    const uniqueValues = getUniqueValues(jsonObj, key);
+// document.getElementById("uniqueCount").addEventListener("click", () => {
+//   const input = document.getElementById("jsonInput").value;
+//   const key = document.getElementById("uniqueKey").value;
+//   if (!key) {
+//     showAlert("Please Enter a Key to get Unique Values", "warning");
+//     return;
+//   }
+//   try {
+//     const jsonObj = JSON.parse(input);
+//     const uniqueValues = getUniqueValues(jsonObj, key);
 
-    // Format output as required
-    const output = Object.entries(uniqueValues)
-      .map(([value, count]) => `${value}: ${count}`)
-      .join("\n");
+//     // Format output as required
+//     const output = Object.entries(uniqueValues)
+//       .map(([value, count]) => `${value}: ${count}`)
+//       .join("\n");
 
-    document.getElementById("output").textContent = output; // Display formatted output
-  } catch (e) {
-    showAlert("Please Provide JSON Data", "warning");
-  }
-});
+//     document.getElementById("output").textContent = output; // Display formatted output
+//     showAlert("Unique Values Counted Successfully", "success");
+//   } catch (e) {
+//     showAlert("Please Provide JSON Data", "error");
+//   }
+// });
 
 // Beautify JSON
 document.getElementById("beautify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value; // Get JSON from input
   if (!input) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
     return;
   }
   const output = beautifyJSON(input); // Beautify the JSON
   if (output === "Invalid JSON") {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   } else {
     document.getElementById("output").textContent = output; // Display the beautified JSON
+    showAlert("JSON Beautified Successfully", "success");
   }
 });
 
@@ -54,9 +57,10 @@ document.getElementById("validate").addEventListener("click", () => {
   }
   const result = validateJSON(input);
   if (result === "Invalid JSON: Unexpected end of JSON input") {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   } else {
     document.getElementById("output").textContent = result.message;
+    showAlert("JSON Validated Successfully", "success");
   }
 });
 
@@ -64,14 +68,15 @@ document.getElementById("validate").addEventListener("click", () => {
 document.getElementById("minify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide JSON Data for minification", "warning");
+    showAlert("Please Provide JSON Data for minification", "error");
     return;
   }
   const output = minifyJSON(input);
   if (output === "Invalid JSON") {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   } else {
     document.getElementById("output").textContent = output;
+    showAlert("JSON Minified Successfully", "success");
   }
 });
 
@@ -79,7 +84,7 @@ document.getElementById("minify").addEventListener("click", () => {
 document.getElementById("frequency").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
     return;
   }
   try {
@@ -90,8 +95,9 @@ document.getElementById("frequency").addEventListener("click", () => {
       null,
       2
     );
+    showAlert("Frequency Counted Successfully", "success");
   } catch (e) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   }
 });
 
@@ -99,10 +105,14 @@ document.getElementById("frequency").addEventListener("click", () => {
 document.getElementById("search").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide keyword to search", "warning");
+    showAlert("Please Provide JSON Data", "error");
     return;
   }
   const keyword = document.getElementById("searchKeyword").value; // Assuming you have an input for the search keyword
+  if (!keyword) {
+    showAlert("Please Enter Keyword to Search", "warning");
+    return;
+  }
   try {
     const jsonObj = JSON.parse(input);
     const results = searchJSON(jsonObj, keyword);
@@ -111,8 +121,10 @@ document.getElementById("search").addEventListener("click", () => {
       null,
       2
     );
+    showAlert("Search Results Displayed Successfully", "success");
   } catch (e) {
     document.getElementById("output").textContent = "Invalid JSON";
+    showAlert("Invalid JSON Data", "warning");
   }
 });
 
@@ -120,7 +132,7 @@ document.getElementById("search").addEventListener("click", () => {
 document.getElementById("replace").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
     return;
   }
   const oldKey = document.getElementById("oldKey").value; // Input for old key
@@ -141,6 +153,7 @@ document.getElementById("replace").addEventListener("click", () => {
       null,
       2
     );
+    showAlert("Key Replaced Successfully", "success");
   } catch (e) {
     document.getElementById("output").textContent = "Invalid JSON";
   }
@@ -157,10 +170,6 @@ document.getElementById("copy").addEventListener("click", () => {
   showAlert(message, "success");
 });
 
-document.getElementById("closeAlert").addEventListener("click", () => {
-  document.getElementById("customAlert").style.display = "none";
-});
-
 // Close the alert when clicking outside of the alert box
 window.addEventListener("click", (event) => {
   const customAlert = document.getElementById("customAlert");
@@ -173,10 +182,14 @@ window.addEventListener("click", (event) => {
 document.getElementById("uniqueCount").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
     return;
   }
   const key = document.getElementById("uniqueKey").value; // Get the key from input
+  if (!key) {
+    showAlert("Please Enter a Key to get Unique Values", "warning");
+    return;
+  }
   try {
     const jsonObj = JSON.parse(input);
     const uniqueValues = getUniqueValues(jsonObj, key);
@@ -185,8 +198,9 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
       .join("\n");
 
     document.getElementById("output").textContent = output; // Display formatted output
+    showAlert("Unique Values Counted Successfully", "success");
   } catch (e) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   }
 });
 
@@ -194,13 +208,33 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
 document.getElementById("validate").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value;
   if (!input) {
-    showAlert("Please Provide JSON Data for validation", "warning");
+    showAlert("Please Provide JSON Data for validation", "error");
     return;
   }
   const result = validateJSON(input);
   document.getElementById("output").textContent = result.message;
-  showAlert(result.message); // Show alert with validation message
+  showAlert("JSON Validated Successfully", "success");
+  showAlert(result.message, "success"); // Show alert with validation message
   if (!result.isValid) {
-    showAlert("Please Provide JSON Data", "warning");
+    showAlert("Please Provide JSON Data", "error");
   }
+});
+
+document.getElementById("sample-data").addEventListener("click", () => {
+  // Convert sample data to a beautified JSON string
+  const beautifiedSampleData = JSON.stringify(sampleData, null, 2);
+
+  // Insert the beautified JSON into the textarea
+  document.getElementById("jsonInput").value = beautifiedSampleData;
+
+  // Clear the output textarea
+  document.getElementById("output").textContent = "";
+
+  // Show alert with sample data message
+  showAlert("Sample Data Imported", "success");
+});
+
+document.getElementById("clear-output").addEventListener("click", () => {
+  document.getElementById("output").textContent = ""; // Clear the output
+  showAlert("Output Cleared", "success");
 });
