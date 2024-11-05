@@ -8,7 +8,6 @@ function beautifyJSON(jsonString) {
 
     return beautifiedJSON; // Return the beautified JSON string
   } catch (error) {
-    console.error("Invalid JSON:", error);
     return "Invalid JSON"; // Return error message for invalid JSON
   }
 }

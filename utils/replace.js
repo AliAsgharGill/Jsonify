@@ -1,20 +1,19 @@
-// Replaces all occurrences of a specified key in a JSON object
 function replaceKey(jsonObj, oldKey, newKey) {
-  const result = {};
-
   const traverseAndReplace = (obj) => {
-    const newObj = {};
-    for (const key in obj) {
-      const value = obj[key];
-      const finalKey = key === oldKey ? newKey : key;
+    if (Array.isArray(obj)) {
+      return obj.map((item) => traverseAndReplace(item));
+    } else if (typeof obj === "object" && obj !== null) {
+      const newObj = {};
+      for (const key in obj) {
+        const value = obj[key];
+        const finalKey = key === oldKey ? newKey : key;
 
-      if (typeof value === "object" && !Array.isArray(value)) {
+        // Recursively apply the function to nested objects
         newObj[finalKey] = traverseAndReplace(value);
-      } else {
-        newObj[finalKey] = value;
       }
+      return newObj;
     }
-    return newObj;
+    return obj; // Return primitive values as is
   };
 
   return traverseAndReplace(jsonObj);
