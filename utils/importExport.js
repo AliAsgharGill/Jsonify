@@ -16,7 +16,6 @@ async function pasteFromClipboard() {
     // Attempt to parse the text as JSON
     return JSON.parse(text);
   } catch (e) {
-    console.error("Error reading or parsing from clipboard:", e);
     return null; // Return null on error
   }
 }
