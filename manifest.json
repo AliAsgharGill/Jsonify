@@ -3,7 +3,7 @@
   "name": "Jsonify",
   "version": "1.0",
   "description": "A Chrome extension for JSON manipulation, analysis, and beautification.",
-  "permissions": ["storage", "activeTab", "scripting"],
+  "permissions": ["storage", "activeTab"],
   "action": {
     "default_popup": "popup.html",
     "default_icon": {
