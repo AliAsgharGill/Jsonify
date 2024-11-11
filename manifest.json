@@ -20,7 +20,6 @@
   "background": {
     "service_worker": "background.js"
   },
-  "host_permissions": ["*://*/*"],
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   },
