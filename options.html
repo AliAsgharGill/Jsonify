@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jsonify Options</title>
+  <link rel="stylesheet" href="options.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Jsonify Extension Options</h1>
+
+    <!-- Theme Selection -->
+    <div class="option">
+      <label for="theme">Select Theme:</label>
+      <select id="theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+    </div>
+
+    <!-- Default JSON Actions -->
+    <div class="option">
+      <label for="default-action">Default JSON Action:</label>
+      <select id="default-action">
+        <option value="beautify">Beautify JSON</option>
+        <option value="minify">Minify JSON</option>
+        <option value="validate">Validate JSON</option>
+      </select>
+    </div>
+
+    <!-- Auto-Load Sample Data -->
+    <div class="option">
+      <label for="autoload-sample">Auto-Load Sample Data:</label>
+      <input type="checkbox" id="autoload-sample" />
+    </div>
+
+    <!-- Save Button -->
+    <button id="save-options">Save Options</button>
+    <p id="status"></p>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html>

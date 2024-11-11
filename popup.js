@@ -9,29 +9,6 @@ import beautifyJSON from "./utils/beautify.js"; // Import the function
 import showAlert from "./utils/alert.js";
 import sampleData from "./assets/sampleDate.js";
 
-// document.getElementById("uniqueCount").addEventListener("click", () => {
-//   const input = document.getElementById("jsonInput").value;
-//   const key = document.getElementById("uniqueKey").value;
-//   if (!key) {
-//     showAlert("Please Enter a Key to get Unique Values", "warning");
-//     return;
-//   }
-//   try {
-//     const jsonObj = JSON.parse(input);
-//     const uniqueValues = getUniqueValues(jsonObj, key);
-
-//     // Format output as required
-//     const output = Object.entries(uniqueValues)
-//       .map(([value, count]) => `${value}: ${count}`)
-//       .join("\n");
-
-//     document.getElementById("output").textContent = output; // Display formatted output
-//     showAlert("Unique Values Counted Successfully", "success");
-//   } catch (e) {
-//     showAlert("Please Provide JSON Data", "error");
-//   }
-// });
-
 // Beautify JSON
 document.getElementById("beautify").addEventListener("click", () => {
   const input = document.getElementById("jsonInput").value; // Get JSON from input
@@ -59,8 +36,8 @@ document.getElementById("validate").addEventListener("click", () => {
   if (result === "Invalid JSON: Unexpected end of JSON input") {
     showAlert("Please Provide JSON Data", "error");
   } else {
-    document.getElementById("output").textContent = result.message;
-    showAlert("JSON Validated Successfully", "success");
+    // document.getElementById("output").textContent = result.message;
+    showAlert("Valid JSON", "success");
   }
 });
 
@@ -200,22 +177,6 @@ document.getElementById("uniqueCount").addEventListener("click", () => {
     document.getElementById("output").textContent = output; // Display formatted output
     showAlert("Unique Values Counted Successfully", "success");
   } catch (e) {
-    showAlert("Please Provide JSON Data", "error");
-  }
-});
-
-// Validate JSON
-document.getElementById("validate").addEventListener("click", () => {
-  const input = document.getElementById("jsonInput").value;
-  if (!input) {
-    showAlert("Please Provide JSON Data for validation", "error");
-    return;
-  }
-  const result = validateJSON(input);
-  document.getElementById("output").textContent = result.message;
-  showAlert("JSON Validated Successfully", "success");
-  showAlert(result.message, "success"); // Show alert with validation message
-  if (!result.isValid) {
     showAlert("Please Provide JSON Data", "error");
   }
 });

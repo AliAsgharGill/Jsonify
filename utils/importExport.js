@@ -3,7 +3,15 @@ function copyToClipboard(json) {
   if (!json) {
     return "Nothing to copy!";
   }
-  navigator.clipboard.writeText(JSON.stringify(json, null, 2));
+
+  // Check if json is already a string. If so, parse it first to avoid double-stringification
+  let jsonData = typeof json === "string" ? JSON.parse(json) : json;
+
+  // Convert the JSON object to a formatted string
+  const jsonString = JSON.stringify(jsonData, null, 2);
+
+  // Write the stringified JSON to the clipboard
+  navigator.clipboard.writeText(jsonString);
   return "Copied to clipboard!";
 }
 
